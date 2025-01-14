@@ -52,6 +52,7 @@ class Navigation:
     # Use proportional speed to decelerate when getting close to desired target
     proportional_velocity_factor = PROP_VELOCITY_MIN_FACTOR
     min_proportional_distance = MIN_DIST_TO_PROP_VELOCITY
+    
 
     if distance_to_target <= min_proportional_distance:
       max_velocity = max_velocity * Navigation.map_value(distance_to_target, 0.0, min_proportional_distance, proportional_velocity_factor, 1.0)

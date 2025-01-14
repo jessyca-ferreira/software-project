@@ -49,3 +49,7 @@ class Geometry:
     @staticmethod
     def from_polar(length: float, angle: float) -> Point:
         return Point(math.cos(angle) * length, math.sin(angle) * length)
+    
+    @staticmethod
+    def arc_tangent(x: float, y: float) -> float:
+        return math.atan2(y, x)
