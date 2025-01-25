@@ -13,9 +13,7 @@ class ExampleAgent(BaseAgent):
             return
         
         num_targets = len(self.targets)
-        
-        print(self.teammates)
-        
+                
         goals = [[0 for i in range(num_targets)] for j in range(len(self.teammates))]
         bids = [[-np.inf for i in range(num_targets)] for j in range(len(self.teammates))]
         costs = [[-Point(j.x, j.y).dist_to(self.targets[i]) for i in range(num_targets)] for j in self.teammates.values()]
@@ -42,13 +40,13 @@ class ExampleAgent(BaseAgent):
         target_index = 0
         for i in range(len(bids)):
             for j in range(num_targets):
-                print(f'{bids[agent_index][j]} {bids[i][j]}')
                 if (bids[agent_index][j] > bids[i][j]):
                     target_index = j
         
+        print(f'{self.id} {target_index}')
          # Utiliza metade da definicao de min_dist do sslenv.py para definir o raio
         radius = 0.18
-        s = 0.6
+        s = 1.2
                 
         target_velocity = Point(0, 0)
         target_angle_velocity = 0
@@ -60,19 +58,15 @@ class ExampleAgent(BaseAgent):
             theta_opponent = np.arctan2(opponent.y - self.pos.y, opponent.x - self.pos.x)
             
             if distance_opponent < radius:
-                target_velocity, target_angle_velocity = Navigation.goToPoint(self.robot, Point(-np.sign(np.cos(theta_opponent))*5, -np.sign(np.cos(theta_opponent))*5))
+                target_velocity, target_angle_velocity = Navigation.goToPoint(self.robot, Point(-np.sign(np.cos(theta_opponent))*1.5, -np.sign(np.cos(theta_opponent))*1.5))
             elif distance_opponent > s+radius:
                 t_velocity, t_angle_velocity = Navigation.goToPoint(self.robot, Point(100*s*np.cos(theta_opponent), 100*s*np.sin(theta_opponent)))
                 target_velocity += t_velocity
                 target_angle_velocity += t_angle_velocity
             elif distance_opponent < s+radius:
-                t_velocity, t_angle_velocity = Navigation.goToPoint(self.robot, Point(-150*(s+radius-distance_opponent)*np.cos(theta_opponent), -150*(s+radius-distance_opponent)*np.sin(theta_opponent)))
+                t_velocity, t_angle_velocity = Navigation.goToPoint(self.robot, Point(-50*(s+radius-distance_opponent)*np.cos(theta_opponent), -50*(s+radius-distance_opponent)*np.sin(theta_opponent)))
                 target_velocity += t_velocity
                 target_angle_velocity += t_angle_velocity
-            
-            if distance <= radius:
-                self.targets.pop(0)
-                return
 
             if distance > s+radius:
                 if (target_angle_velocity == 0):
