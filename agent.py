@@ -10,7 +10,7 @@ class ExampleAgent(BaseAgent):
         if len(self.targets) == 0:
             return
         
-        # Utiliza metade da definicao de min_dist do sslenv.py para definir o raio
+        # Utiliza definicao de min_dist do sslenv.py para definir o raio
         radius = 0.18
         step = 1.2
         
