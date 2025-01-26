@@ -1,8 +1,4 @@
-from utils.ssl.Navigation import Navigation
 from utils.ssl.base_agent import BaseAgent
-from utils.Point import Point
-import numpy as np
-import matplotlib.pyplot as plt
 from utils.TaskAttribution import TaskAttribution
 from utils.PathPlanning import PathPlanning
 
@@ -19,7 +15,7 @@ class ExampleAgent(BaseAgent):
         step = 1.2
         
         target_index = TaskAttribution.attribute_task(self.id, self.targets, self.teammates, self.opponents)
-        target_velocity, target_angle_velocity = PathPlanning.getDirections(self.robot, self.opponents, radius, step, self.pos, self.targets, target_index)
+        target_velocity, target_angle_velocity = PathPlanning.get_directions(self.robot, self.opponents, radius, step, self.pos, self.targets, target_index)
                     
         self.set_vel(target_velocity)
         self.set_angle_vel(target_angle_velocity)

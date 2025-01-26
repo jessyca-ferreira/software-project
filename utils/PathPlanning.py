@@ -2,11 +2,10 @@ from utils.ssl.Navigation import Navigation
 from utils.ssl.base_agent import BaseAgent
 from utils.Point import Point
 import numpy as np
-import matplotlib.pyplot as plt
 
 class PathPlanning:
     @staticmethod
-    def getDirections(robot, opponents, radius, s, pos, targets, target_index):
+    def get_directions(robot, opponents, radius, s, pos, targets, target_index):
         target_velocity = Point(0, 0)
         target_angle_velocity = 0
         
