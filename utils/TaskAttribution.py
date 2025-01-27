@@ -33,8 +33,7 @@ class TaskAttribution:
         final_bids = [0 for i in range(num_targets)]
         for i in range(len(bids)):
             for j in range(num_targets):
-                if (bids[agent_index][j] > bids[i][j] and goals[i][j] == 1):
-                    final_bids[j] = bids[agent_index][j]
+                final_bids[j] = bids[agent_index][j]
                     
         target_index = final_bids.index(max(final_bids))
         return target_index
